@@ -1,4 +1,4 @@
-package com.dev.sbWebapp.socketApi.socket;
+package com.dev.sbWebapp.java.socketApi.socket;
 
 public class Socket {
 
