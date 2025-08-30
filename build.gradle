@@ -1,0 +1,109 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.2'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.dev'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.h2database:h2'
+
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.aspectj:aspectjweaver'
+
+    /*
+     * 1. Compile Lib
+     */
+    // Lombok Lib. As of gradle5.0.
+    /*
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+    */
+
+    /*
+     * 2. Runtime Lib(spring boot 포함)
+     */
+
+    // 스프링 웹, MVC. springboot web 포함 라이브러리.
+    //implementation 'org.springframework:spring-webmvc'
+
+    // 내장 톰캣. springboot web 포함 라이브러리.
+    //implementation 'org.apache.tomcat.embed:tomcat-embed-core'
+
+    // jackson lib. json data binding. springboot web 포함 라이브러리.
+    //implementation 'com.fasterxml.jackson.core:jackson-databind'
+    //implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.15.0'
+
+    // LOG lib. springboot logging 포함 라이브러리
+    //implementation 'ch.qos.logback:logback-classic'
+    //implementation 'org.apache.logging.log4j:log4j-to-slf4j'
+    //implementation 'org.slf4j:jul-to-slf4j'
+
+    // snakeYml. yml parser. springboot core 포함 라이브러리.
+    //implementation 'org.yaml:snakeyaml:1.33'
+
+    // crypto lib. springboot security 포함 라이브러리.
+    //implementation("org.springframework.security:spring-security-crypto:6.4.6")
+
+    // aspectj lib. bytecode weaving.
+    //runtimeOnly("org.aspectj:aspectjweaver:1.9.24")
+
+    // Mybatis sql pretty
+    //implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+
+    /*
+     * 3. Test Lib
+     */
+
+    // RestAssured Lib.
+    //testImplementation("io.rest-assured:rest-assured:5.4.0")
+
+    // Mokito lib.
+    //testImplementation("org.mockito:mockito-junit-jupiter:5.17.0")
+
+    // junit params. springboot test 포함 라이브러리.
+    //testImplementation("org.junit.jupiter:junit-jupiter-params:5.12.2")
+
+    /*
+     * 4. etc Lib
+     */
+
+    // springboot actuator
+    //implementation 'org.springframework.boot:spring-boot-starter-actuator' //actuator 추가
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+// 미설정 시 시스템 기본 인코딩(win CP949, mac/linux UTF-8)을 사용해서 컴파일 됨.
+// 시스템에 따라 컴파일 결과가 달라질 수 있으며, 한글 주석이 깨질 수 있음.
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
