@@ -1,0 +1,47 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+}
+
+.header-title {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.header-btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: white;
+    color: #007BFF;
+    font-weight: bold;
+    font-size: 14px;       /* 글자 크기 통일 */
+    line-height: 1.2;      /* 라인 높이 통일 */
+    cursor: pointer;
+    transition: 0.2s;
+    border: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle; /* a/button 통일 */
+}
+
+.header-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/*.home-btn {*/
+/*    border: 1px solid white;*/
+/*    background-color: transparent;*/
+/*    color: white;*/
+/*}*/

@@ -9,19 +9,19 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
-public class ServiceListDto {
+public class KtCombToolListDto {
 
-    private List<ServiceDto> services;
+    private List<KtCombToolDto> ktCombToolList;
 
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
-    public static class ServiceDto {
+    public static class KtCombToolDto {
         private String id;
         private String name;
         private String description;
 
         @Builder
-        public ServiceDto(String id, String name, String description) {
+        public KtCombToolDto(String id, String name, String description) {
             this.id = id;
             this.name = name;
             this.description = description;
@@ -29,7 +29,7 @@ public class ServiceListDto {
     }
 
     @Builder
-    public ServiceListDto(List<ServiceDto> services) {
-        this.services = services;
+    public KtCombToolListDto(List<KtCombToolDto> ktCombToolList) {
+        this.ktCombToolList = ktCombToolList;
     }
 }

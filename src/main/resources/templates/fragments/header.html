@@ -1,0 +1,19 @@
+<!-- fragments/header.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="headerFragment(pageTitle)">
+    <header class="header">
+        <!-- 좌측 타이틀 -->
+        <h1 class="header-title" th:text="${pageTitle}">Page Title</h1>
+
+        <!-- 우측 버튼 그룹 -->
+        <div class="header-buttons">
+            <a href="/" class="header-btn">Home</a>
+            <button id="importBtn" class="header-btn">Import</button>
+            <button id="exportBtn" class="header-btn">Export</button>
+        </div>
+    </header>
+</div>
+</body>
+</html>
