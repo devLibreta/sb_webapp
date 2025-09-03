@@ -40,6 +40,23 @@ dependencies {
     implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.2'   // JAXB API
     implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.5'        // JAXB 구현체(Runtime)
 
+    // Webservice Lib START ==========================================
+
+    // Apache CXF SOAP 로깅 기능
+    implementation 'org.apache.cxf:cxf-rt-features-logging:4.1.1' // 최신 버전 확인
+
+    // CXF JAX-WS Starter (Spring Boot용)
+    implementation 'org.apache.cxf:cxf-spring-boot-starter-jaxws:4.1.1'
+
+    // JAXB (Java 11 이상 필요)
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.0'
+    // 서버/테스트 공용
+//    implementation 'jakarta.xml.ws:jakarta.xml.ws-api:3.1.0'
+    // 테스트용 라이브러리
+//    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    // Webservice Lib END ==========================================
+
     /*
      * 1. Compile Lib
      */
