@@ -25,7 +25,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class MyWebServiceTest {
+public class ApacheCxfTest {
 
     @LocalServerPort
     private int port; // Spring Boot 랜덤 포트
