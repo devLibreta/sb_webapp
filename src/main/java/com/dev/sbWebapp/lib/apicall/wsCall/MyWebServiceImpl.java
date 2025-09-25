@@ -1,13 +1,12 @@
-package com.dev.sbWebapp.domain.webservice;
+package com.dev.sbWebapp.lib.apicall.wsCall;
 
 
 import jakarta.jws.WebService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @WebService(
         serviceName = "MyWebService",
-        endpointInterface = "com.dev.sbWebapp.domain.webservice.MyWebService",
+        endpointInterface = "com.dev.sbWebapp.lib.apicall.wsCall.MyWebService",
         targetNamespace = "http://webservice.domain.sbWebapp.dev.com/"
 )
 @Component

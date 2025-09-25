@@ -1,19 +1,38 @@
+server:
+  port: 8080
+
 spring:
   config:
     activate:
       on-profile: local
 
-# h2 db config
-h2:
-  console:
-    path: /h2-console # console url path default val
-    enabled: true # console enable
+  # h2 db config
+  h2:
+    console:
+  #    path: /h2-console # console url path default val
+      path: /h2
+      enabled: true # console enable
 
-datasource:
-  url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-  username: sa
-  password:
-  driver-class-name: org.h2.Driver
+  datasource:
+    # DB_CLOSE_DELAY=-1 : 세션 종료되도 메모리 db 유지
+    # DB_CLOSE_ON_EXIT=FALSE : 앱 종료 시 자동삭제 방지
+    # INIT=CREATE SCHEMA IF NOT EXISTS JAVERS : 초기 스키마 설정
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;INIT=CREATE SCHEMA IF NOT EXISTS JAVERS
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+# Javers lib config
+javers:
+  sqlSchema: JAVERS          # Javers 테이블이 생성될 스키마명 (기본: PUBLIC)
+  sqlDialect: h2             # DB 종류 (h2, mysql, postgres, oracle, mssql)
+  sqlGlobalIdCacheDisabled: false  # 글로벌 ID 캐시 비활성화 여부
+  algorithm: simple          # 비교 알고리즘 (simple | levenshtein) - 컬렉션 diff 방식
+  prettyPrint: true          # Diff 결과 로그를 보기 좋게 출력
+  mappingStyle: field        # field | bean (필드 기반 vs getter 기반 매핑)
+  newObjectSnapshot: true    # 새로 추가된 객체도 스냅샷 저장 여부
+  typeSafeValues: true       # 값 타입 비교 시 타입 체크 강화
+
 
 # jackson lib config
 jackson:
@@ -24,7 +43,7 @@ jackson:
 logging:
   level:
     # TRACE > DEBUG > INFO > WARN > ERROR > FATAL
-    com.dev.sbWebapp.boot_study : "INFO"
+    com.dev.sbWebapp.boot_study: "INFO"
     root: "INFO"
 
 # Lombok lib config
@@ -62,5 +81,21 @@ cxf:
 #env:
 #  loading:
 #    message: "==================Loading <Dev> Profile=================="
+
+# Jasypt Secret key
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
+    # 암호화 키값
+    password: devrun
+    # 프로퍼티 파일 안에 END("text") 포맷으로 된 문자열은 복호화 처리해서 빈을 생성하게 함.
+    property:
+      prefix: ENC( # default. DefaultPropertyDetector class config.
+      suffix: ) # default
+
+# Jasypt encryptedText
+example:
+  id: ENC(hy3M98jy5hwpSs9bFUOCfqApQKE8d/uCAcdLgiib0Eo=)
+  pwd: ENC(eED2PDv8llldt69BM2wam36tgywBnoLLDz5fgbnmX5i3y//Txns+bg==)
 
 ---

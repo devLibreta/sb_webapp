@@ -1,4 +1,4 @@
-package com.dev.sbWebapp.global;
+package com.dev.sbWebapp.lib.assertion.junit;
 
 import org.junit.jupiter.api.*;
 

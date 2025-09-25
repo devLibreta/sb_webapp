@@ -34,7 +34,6 @@ public class KtCombToolRetvService {
                 .description("서비스로그 경로로 서비스 로그 다운로드")
                 .build();
 
-
         return KtCombToolListDto.builder()
                 .ktCombToolList(List.of(tool1, tool2, tool3, tool4))
                 .build();

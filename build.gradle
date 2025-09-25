@@ -6,6 +6,7 @@ plugins {
 
 group = 'com.dev'
 version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '21'
 
 java {
     toolchain {
@@ -22,21 +23,23 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'com.h2database:h2'
+
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.javers:javers-spring-boot-starter-sql:7.6.0'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
 
-    compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.security:spring-security-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    // db config
+    implementation 'com.h2database:h2'
     implementation 'org.aspectj:aspectjweaver'
 
+    // OXM
     implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.2'   // JAXB API
     implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.5'        // JAXB 구현체(Runtime)
 
@@ -52,6 +55,7 @@ dependencies {
     implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
     implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.0'
     // 서버/테스트 공용
+
 //    implementation 'jakarta.xml.ws:jakarta.xml.ws-api:3.1.0'
     // 테스트용 라이브러리
 //    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
@@ -64,13 +68,21 @@ dependencies {
     /*
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-    testCompileOnly 'org.projectlombok:lombok'
-    testAnnotationProcessor 'org.projectlombok:lombok'
+
     */
 
     /*
      * 2. Runtime Lib(spring boot 포함)
      */
+
+    // Jasypt package
+    // https://mvnrepository.com/artifact/com.github.ulisesbocchio/jasypt-spring-boot-starter
+    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
+
+    // Aop package
+    // aspectjweaver, spring-aop, spring-boot-starter
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop
+    implementation 'org.springframework.boot:spring-boot-starter-aop:3.0.4'
 
     // 스프링 웹, MVC. springboot web 포함 라이브러리.
     //implementation 'org.springframework:spring-webmvc'
@@ -103,8 +115,20 @@ dependencies {
      * 3. Test Lib
      */
 
+    // spring starter
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-webflux' // WebTestClient 필요
+
+    // lombok test
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
+    // Junit launcher. after gradle 7+, not necessary
+    //testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
     // RestAssured Lib.
-    //testImplementation("io.rest-assured:rest-assured:5.4.0")
+    testImplementation 'io.rest-assured:rest-assured:5.5.6'
 
     // Mokito lib.
     //testImplementation("org.mockito:mockito-junit-jupiter:5.17.0")

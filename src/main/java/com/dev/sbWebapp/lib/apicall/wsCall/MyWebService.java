@@ -1,9 +1,8 @@
-package com.dev.sbWebapp.domain.webservice;
+package com.dev.sbWebapp.lib.apicall.wsCall;
 
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
-import jakarta.jws.soap.SOAPBinding;
 
 @WebService
 //@SOAPBinding(style = SOAPBinding.Style.RPC)
